@@ -51,7 +51,8 @@ public class ProviderController {
         return "provider/addProvider";
     }
     
-    @PostMapping("add")
+    @PostMapping("addSave")
+    //@ResponseBody
     public String addProvider(@Valid Provider provider, BindingResult result) {
         if (result.hasErrors()) {
             return "provider/addProvider";
