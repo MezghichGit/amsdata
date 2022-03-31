@@ -79,25 +79,27 @@ public class ProviderController {
         return "redirect:../list";
     }
     
-    /*
+   
     @GetMapping("edit/{id}")
     public String showProviderFormToUpdate(@PathVariable("id") long id, Model model) {
         Provider provider = providerRepository.findById(id)
             .orElseThrow(()->new IllegalArgumentException("Invalid provider Id:" + id));
         
+        System.out.println(provider);
         model.addAttribute("provider", provider);
         
         return "provider/updateProvider";
     }
 
-
+    
     
     @PostMapping("update")
-    public String updateProvider(@Valid Provider provider, BindingResult result, Model model) {
-    	
-    	
+    public String updateProvider(@Valid Provider provider, BindingResult result) {
+    	 if (result.hasErrors()) {
+             return "provider/updateProvider";
+         }
     	providerRepository.save(provider);
     	return"redirect:list";
     	
-    }*/
+    }
 }

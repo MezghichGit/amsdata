@@ -17,7 +17,12 @@ public class Provider {
     @Column(name = "name")
     private String name;
     
-    @NotBlank(message = "Address is mandatory")
+    @Override
+	public String toString() {
+		return "Provider [id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + "]";
+	}
+
+	@NotBlank(message = "Address is mandatory")
     @Column(name = "address")
     private String address;
     
