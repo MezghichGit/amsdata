@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-10">
-                    <form action="#" th:action="@{/article/add}" th:object="${article}" method="post">
+                    <form action="#" th:action="@{/article/add}" th:object="${article}" method="post" enctype="multipart/form-data">
                         <div class="row">
 							<div class="form-group col-md-8">
                                 <label for="label" class="col-form-label">Label</label> <input type="text" th:field="*{label}" class="form-control" id="label" placeholder="label"/> <span th:if="${#fields.hasErrors('label')}" th:errors="*{label}" class="text-danger"></span>
@@ -25,6 +25,11 @@
                             <div class="form-group col-md-8">
                                 <label for="price" class="col-form-label">Price</label> <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price"/> <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
                             </div>
+                            
+                            <div class="form-group col-md-8">
+                            <label for="picture" class="col-form-label">Picture</label>
+                            <input class="form-control" type="file" name="files" multiple>
+      					 	</div>
                             
                             
                             <div class="form-group col-md-8">

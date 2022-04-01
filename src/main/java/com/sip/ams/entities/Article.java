@@ -28,6 +28,10 @@ public class Article {
  
     @Column(name = "price")
     private float price;
+    
+    @Column(name = "picture")
+    private String picture;
+
 
     public Article() {}
 
@@ -74,6 +78,16 @@ public class Article {
     
     public void setProvider(Provider provider) {
     	this.provider=provider;
-    }  
+    } 
+    
+    public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	
+	
+	public String getPicture() {
+		return picture;
+	}
+
     
 }
