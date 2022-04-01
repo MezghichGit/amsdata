@@ -22,6 +22,8 @@
            <button th:case="USER" class="btn btn-primary">Ajouter</button>
            <button th:case="ADMIN" class="btn btn-danger">Delete</button>
            </div> 
+           
+           <div sec:authorize="hasAuthority('ADMIN')" > Has Authority Admin </div> 
             </span>
         </footer>
     </div>
