@@ -1,7 +1,12 @@
 package com.sip.ams.controllers;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.Valid;
+
+import com.sip.ams.entities.Role;
 import com.sip.ams.entities.User;
 import com.sip.ams.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +31,20 @@ public class LoginController {
     
     @RequestMapping(value={"/home"}, method = RequestMethod.GET)
     public ModelAndView accueil(){
+    	
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
+        
+        
+        
+        
+        Set<Role> userRoles = (Set<Role>) user.getRoles();
+        Object[] tab = userRoles.toArray();
+        Role r =(Role)tab[0];
+        String role = r.getRole();
+        modelAndView.addObject("userRole", role);
         return modelAndView;
     }
     
@@ -42,7 +59,9 @@ public class LoginController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
+        
         User userExists = userService.findUserByEmail(user.getEmail());
+       
         if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
